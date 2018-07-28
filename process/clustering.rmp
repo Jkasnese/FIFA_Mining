@@ -18,7 +18,7 @@
     <parameter key="process_duration_for_mail" value="30"/>
     <parameter key="encoding" value="SYSTEM"/>
     <process expanded="true">
-      <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (2)" width="90" x="112" y="136">
+      <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (2)" width="90" x="112" y="34">
         <parameter key="attribute_filter_type" value="subset"/>
         <parameter key="attribute" value="eur_value"/>
         <parameter key="attributes" value="eur_value||ID"/>
@@ -32,7 +32,7 @@
         <parameter key="invert_selection" value="false"/>
         <parameter key="include_special_attributes" value="true"/>
       </operator>
-      <operator activated="true" class="x_means" compatibility="8.2.000" expanded="true" height="82" name="X-Means" width="90" x="246" y="136">
+      <operator activated="true" class="x_means" compatibility="8.2.000" expanded="true" height="82" name="X-Means" width="90" x="246" y="34">
         <parameter key="add_cluster_attribute" value="true"/>
         <parameter key="add_as_label" value="false"/>
         <parameter key="remove_unlabeled" value="false"/>
@@ -59,13 +59,13 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="true" class="cluster_distance_performance" compatibility="8.2.000" expanded="true" height="103" name="x" width="90" x="514" y="136">
+      <operator activated="true" class="cluster_distance_performance" compatibility="8.2.000" expanded="true" height="103" name="x" width="90" x="514" y="34">
         <parameter key="main_criterion" value="Avg. within centroid distance"/>
         <parameter key="main_criterion_only" value="false"/>
         <parameter key="normalize" value="false"/>
         <parameter key="maximize" value="false"/>
       </operator>
-      <operator activated="false" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes" width="90" x="112" y="34">
+      <operator activated="false" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes" width="90" x="45" y="340">
         <parameter key="attribute_filter_type" value="single"/>
         <parameter key="attribute" value="eur_value"/>
         <parameter key="attributes" value=""/>
@@ -79,7 +79,7 @@
         <parameter key="invert_selection" value="false"/>
         <parameter key="include_special_attributes" value="false"/>
       </operator>
-      <operator activated="false" class="fast_k_means" compatibility="8.2.000" expanded="true" height="82" name="Clustering" width="90" x="246" y="34">
+      <operator activated="false" class="fast_k_means" compatibility="8.2.000" expanded="true" height="82" name="Clustering" width="90" x="179" y="340">
         <parameter key="add_cluster_attribute" value="true"/>
         <parameter key="add_as_label" value="false"/>
         <parameter key="remove_unlabeled" value="false"/>
@@ -104,13 +104,13 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="false" class="cluster_distance_performance" compatibility="8.2.000" expanded="true" height="103" name="k" width="90" x="514" y="34">
+      <operator activated="false" class="cluster_distance_performance" compatibility="8.2.000" expanded="true" height="103" name="k" width="90" x="447" y="340">
         <parameter key="main_criterion" value="Avg. within centroid distance"/>
         <parameter key="main_criterion_only" value="false"/>
         <parameter key="normalize" value="false"/>
         <parameter key="maximize" value="false"/>
       </operator>
-      <operator activated="false" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (3)" width="90" x="112" y="238">
+      <operator activated="false" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (3)" width="90" x="45" y="544">
         <parameter key="attribute_filter_type" value="single"/>
         <parameter key="attribute" value="eur_value"/>
         <parameter key="attributes" value=""/>
@@ -124,7 +124,7 @@
         <parameter key="invert_selection" value="false"/>
         <parameter key="include_special_attributes" value="false"/>
       </operator>
-      <operator activated="false" class="normalize" compatibility="8.2.000" expanded="true" height="103" name="Normalize" width="90" x="246" y="238">
+      <operator activated="false" class="normalize" compatibility="8.2.000" expanded="true" height="103" name="Normalize" width="90" x="179" y="544">
         <parameter key="return_preprocessing_model" value="false"/>
         <parameter key="create_view" value="false"/>
         <parameter key="attribute_filter_type" value="single"/>
@@ -144,7 +144,7 @@
         <parameter key="max" value="1.0"/>
         <parameter key="allow_negative_values" value="false"/>
       </operator>
-      <operator activated="false" class="fast_k_means" compatibility="8.2.000" expanded="true" height="82" name="Clustering (2)" width="90" x="380" y="238">
+      <operator activated="false" class="fast_k_means" compatibility="8.2.000" expanded="true" height="82" name="Clustering (2)" width="90" x="313" y="544">
         <parameter key="add_cluster_attribute" value="true"/>
         <parameter key="add_as_label" value="false"/>
         <parameter key="remove_unlabeled" value="false"/>
@@ -169,13 +169,13 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="false" class="cluster_distance_performance" compatibility="8.2.000" expanded="true" height="103" name="kn" width="90" x="514" y="238">
+      <operator activated="false" class="cluster_distance_performance" compatibility="8.2.000" expanded="true" height="103" name="kn" width="90" x="447" y="544">
         <parameter key="main_criterion" value="Avg. within centroid distance"/>
         <parameter key="main_criterion_only" value="false"/>
         <parameter key="normalize" value="false"/>
         <parameter key="maximize" value="false"/>
       </operator>
-      <operator activated="false" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (4)" width="90" x="112" y="391">
+      <operator activated="false" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Attributes (4)" width="90" x="45" y="697">
         <parameter key="attribute_filter_type" value="single"/>
         <parameter key="attribute" value="eur_value"/>
         <parameter key="attributes" value=""/>
@@ -189,7 +189,7 @@
         <parameter key="invert_selection" value="false"/>
         <parameter key="include_special_attributes" value="false"/>
       </operator>
-      <operator activated="false" class="normalize" compatibility="8.2.000" expanded="true" height="103" name="Normalize (2)" width="90" x="246" y="391">
+      <operator activated="false" class="normalize" compatibility="8.2.000" expanded="true" height="103" name="Normalize (2)" width="90" x="179" y="697">
         <parameter key="return_preprocessing_model" value="false"/>
         <parameter key="create_view" value="false"/>
         <parameter key="attribute_filter_type" value="single"/>
@@ -209,7 +209,7 @@
         <parameter key="max" value="1.0"/>
         <parameter key="allow_negative_values" value="false"/>
       </operator>
-      <operator activated="false" class="x_means" compatibility="8.2.000" expanded="true" height="82" name="X-Means (2)" width="90" x="380" y="391">
+      <operator activated="false" class="x_means" compatibility="8.2.000" expanded="true" height="82" name="X-Means (2)" width="90" x="313" y="697">
         <parameter key="add_cluster_attribute" value="true"/>
         <parameter key="add_as_label" value="false"/>
         <parameter key="remove_unlabeled" value="false"/>
@@ -236,13 +236,14 @@
         <parameter key="use_local_random_seed" value="false"/>
         <parameter key="local_random_seed" value="1992"/>
       </operator>
-      <operator activated="false" class="cluster_distance_performance" compatibility="8.2.000" expanded="true" height="103" name="xn" width="90" x="514" y="391">
+      <operator activated="false" class="cluster_distance_performance" compatibility="8.2.000" expanded="true" height="103" name="xn" width="90" x="447" y="697">
         <parameter key="main_criterion" value="Avg. within centroid distance"/>
         <parameter key="main_criterion_only" value="false"/>
         <parameter key="normalize" value="false"/>
         <parameter key="maximize" value="false"/>
       </operator>
-      <operator activated="true" class="concurrency:join" compatibility="8.2.000" expanded="true" height="82" name="Join" width="90" x="648" y="544">
+      <operator activated="true" class="multiply" compatibility="8.2.000" expanded="true" height="103" name="Multiply" width="90" x="802" y="55"/>
+      <operator activated="true" class="concurrency:join" compatibility="8.2.000" expanded="true" height="82" name="Join" width="90" x="179" y="136">
         <parameter key="remove_double_attributes" value="true"/>
         <parameter key="join_type" value="inner"/>
         <parameter key="use_id_attribute_as_key" value="false"/>
@@ -251,16 +252,16 @@
         </list>
         <parameter key="keep_both_join_attributes" value="false"/>
       </operator>
-      <operator activated="true" class="store" compatibility="8.2.000" expanded="true" height="68" name="Store" width="90" x="849" y="544">
+      <operator activated="true" class="store" compatibility="8.2.000" expanded="true" height="68" name="Store" width="90" x="313" y="136">
         <parameter key="repository_entry" value="../dataset_futebol/clustered"/>
       </operator>
       <connect from_port="input 1" to_op="Select Attributes (2)" to_port="example set input"/>
-      <connect from_port="input 3" to_op="Join" to_port="left"/>
+      <connect from_port="input 2" to_op="Join" to_port="left"/>
       <connect from_op="Select Attributes (2)" from_port="example set output" to_op="X-Means" to_port="example set"/>
       <connect from_op="X-Means" from_port="cluster model" to_op="x" to_port="cluster model"/>
       <connect from_op="X-Means" from_port="clustered set" to_op="x" to_port="example set"/>
       <connect from_op="x" from_port="performance" to_port="result 1"/>
-      <connect from_op="x" from_port="example set" to_op="Join" to_port="right"/>
+      <connect from_op="x" from_port="example set" to_op="Multiply" to_port="input"/>
       <connect from_op="Select Attributes" from_port="example set output" to_op="Clustering" to_port="example set"/>
       <connect from_op="Clustering" from_port="cluster model" to_op="k" to_port="cluster model"/>
       <connect from_op="Clustering" from_port="clustered set" to_op="k" to_port="example set"/>
@@ -272,6 +273,8 @@
       <connect from_op="Normalize (2)" from_port="example set output" to_op="X-Means (2)" to_port="example set"/>
       <connect from_op="X-Means (2)" from_port="cluster model" to_op="xn" to_port="cluster model"/>
       <connect from_op="X-Means (2)" from_port="clustered set" to_op="xn" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 1" to_port="result 2"/>
+      <connect from_op="Multiply" from_port="output 2" to_op="Join" to_port="right"/>
       <connect from_op="Join" from_port="join" to_op="Store" to_port="input"/>
       <portSpacing port="source_input 1" spacing="0"/>
       <portSpacing port="source_input 2" spacing="0"/>
@@ -280,8 +283,6 @@
       <portSpacing port="sink_result 1" spacing="0"/>
       <portSpacing port="sink_result 2" spacing="0"/>
       <portSpacing port="sink_result 3" spacing="0"/>
-      <portSpacing port="sink_result 4" spacing="0"/>
-      <portSpacing port="sink_result 5" spacing="0"/>
     </process>
   </operator>
 </process>

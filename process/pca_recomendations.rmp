@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="8.2.000">
+  <context>
+    <input>
+      <location>//FIFA_Mining/dataset_futebol/paises_selecionados</location>
+      <location>../dataset_futebol/paises_selecionados</location>
+    </input>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="8.2.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="set_macros" compatibility="8.2.000" expanded="true" height="82" name="Set Macros" width="90" x="45" y="34">
+        <list key="macros">
+          <parameter key="kbest" value="10"/>
+          <parameter key="maxLoss" value="0"/>
+        </list>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Distances Attributes" width="90" x="179" y="34">
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="eur_release_clause|eur_value|eur_wage|full_name|league|name|nationality"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="true"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Distances Attributes (2)" width="90" x="313" y="34">
+        <parameter key="attribute_filter_type" value="value_type"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="eur_release_clause|eur_value|eur_wage|club|full_name|league|name|nationality"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Distances Attributes (3)" width="90" x="447" y="34">
+        <parameter key="attribute_filter_type" value="no_missing_values"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="eur_release_clause|eur_value|eur_wage|club|full_name|league|name|nationality"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="normalize" compatibility="8.2.000" expanded="true" height="103" name="Normalize" width="90" x="581" y="34">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="create_view" value="false"/>
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="real"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="method" value="Z-transformation"/>
+        <parameter key="min" value="0.0"/>
+        <parameter key="max" value="1.0"/>
+        <parameter key="allow_negative_values" value="false"/>
+      </operator>
+      <operator activated="true" class="singular_value_decomposition" compatibility="8.2.000" expanded="true" height="103" name="SVD" width="90" x="715" y="34">
+        <parameter key="dimensionality_reduction" value="keep percentage"/>
+        <parameter key="percentage_threshold" value="0.95"/>
+        <parameter key="dimensions" value="1"/>
+      </operator>
+      <operator activated="false" class="principal_component_analysis" compatibility="8.2.000" expanded="true" height="103" name="PCA" width="90" x="179" y="544">
+        <parameter key="dimensionality_reduction" value="keep variance"/>
+        <parameter key="variance_threshold" value="0.95"/>
+        <parameter key="number_of_components" value="1"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="8.2.000" expanded="true" height="82" name="Join Attributes (2)" width="90" x="45" y="187">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="true"/>
+        <list key="key_attributes"/>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="filter_examples" compatibility="8.2.000" expanded="true" height="103" name="Select Team" width="90" x="179" y="187">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="custom_filters"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list">
+          <parameter key="filters_entry_key" value="club.equals.Associação Chapecoense de Futebol"/>
+        </list>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Distances Attributes (4)" width="90" x="313" y="136">
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="club"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="true"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="8.2.000" expanded="true" height="82" name="Select Distances Attributes (5)" width="90" x="313" y="238">
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="club"/>
+        <parameter key="attributes" value="eur_release_clause|eur_value|eur_wage|club|full_name|league|name|nationality"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="true"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="cross_distances" compatibility="8.2.000" expanded="true" height="103" name="Cross Distances" width="90" x="447" y="187">
+        <parameter key="measure_types" value="MixedMeasures"/>
+        <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+        <parameter key="nominal_measure" value="NominalDistance"/>
+        <parameter key="numerical_measure" value="EuclideanDistance"/>
+        <parameter key="divergence" value="GeneralizedIDivergence"/>
+        <parameter key="kernel_type" value="radial"/>
+        <parameter key="kernel_gamma" value="1.0"/>
+        <parameter key="kernel_sigma1" value="1.0"/>
+        <parameter key="kernel_sigma2" value="0.0"/>
+        <parameter key="kernel_sigma3" value="2.0"/>
+        <parameter key="kernel_degree" value="3.0"/>
+        <parameter key="kernel_shift" value="1.0"/>
+        <parameter key="kernel_a" value="1.0"/>
+        <parameter key="kernel_b" value="0.0"/>
+        <parameter key="only_top_k" value="true"/>
+        <parameter key="k" value="%{kbest}"/>
+        <parameter key="search_for" value="nearest"/>
+        <parameter key="compute_similarities" value="false"/>
+      </operator>
+      <operator activated="true" class="rename" compatibility="8.2.000" expanded="true" height="82" name="Rename ID" width="90" x="581" y="187">
+        <parameter key="old_name" value="document"/>
+        <parameter key="new_name" value="ID"/>
+        <list key="rename_additional_attributes"/>
+      </operator>
+      <operator activated="true" class="set_role" compatibility="8.2.000" expanded="true" height="82" name="Set Role ID" width="90" x="715" y="187">
+        <parameter key="attribute_name" value="ID"/>
+        <parameter key="target_role" value="id"/>
+        <list key="set_additional_roles"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="8.2.000" expanded="true" height="82" name="Join Attributes" width="90" x="313" y="391">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="true"/>
+        <list key="key_attributes"/>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="generate_attributes" compatibility="8.2.000" expanded="true" height="82" name="Generate Comparative Attributes" width="90" x="447" y="391">
+        <list key="function_descriptions">
+          <parameter key="cost_diff" value="0"/>
+          <parameter key="overall_diff" value="0"/>
+          <parameter key="best_buy" value="false"/>
+          <parameter key="cheapest" value="false"/>
+          <parameter key="candidate_name" value="&quot;none&quot;"/>
+        </list>
+        <parameter key="keep_all" value="true"/>
+      </operator>
+      <operator activated="true" class="execute_script" compatibility="8.2.000" expanded="true" height="145" name="Calculate Comparatives" width="90" x="648" y="340">
+        <parameter key="script" value="/* &#10; * You can use both Java and Groovy syntax in this script.&#10; * &#10; * Note that you have access to the following two predefined variables:&#10; * 1) input (an array of all input data)&#10; * 2) operator (the operator instance which is running this script)&#10; */&#10;&#10;// Take first input data and treat it as generic IOObject&#10;// Alternatively, you could treat it as an ExampleSet if it is one:&#10;// IOObject inputData = input[0];&#10;&#10;ExampleSet inputData = input[0];&#10;// (operator.getProcess().getMacroHandler().getMacro(&quot;kbest&quot;))&#10;// Get macro values&#10;int numberOfPlayers = inputData.size() / %{kbest};&#10;int maxLoss = %{maxLoss};&#10;&#10;HashMap bestBuyHash = new HashMap(50);&#10;HashMap cheapest = new HashMap(50);&#10;&#10;// Generate cost_diff and overall_dif&#10;for (Example example : inputData){&#10;&#9;request = example[&quot;request&quot;];&#10;&#9;if (!(bestBuyHash.containsKey(request)) ){&#10;&#9;&#9;bestBuyHash.put(request, 0);&#10;&#9;&#9;cheapest.put(request, 0);&#10;&#9;}&#10;&#9;for ( Example requested : inputData ){&#10;&#9;&#9;if (requested[&quot;ID&quot;] == request){&#10;&#9;&#9;&#9;costDiff = example[&quot;eur_value&quot;] - requested[&quot;eur_value&quot;];&#10;&#9;&#9;&#9;example[&quot;cost_diff&quot;] = costDiff;&#10;&#9;&#9;&#9;overallDiff = example[&quot;overall&quot;] - requested[&quot;overall&quot;];&#10;&#9;&#9;&#9;example[&quot;overall_diff&quot;] = overallDiff;&#10;&#9;&#9;&#9;example[&quot;candidate_name&quot;] = requested[&quot;name&quot;];&#10;&#10;&#9;&#9;&#9;if (overallDiff &gt;= maxLoss &amp;&amp; costDiff &lt; bestBuyHash.get(request) ){&#10;&#9;&#9;&#9;&#9;bestBuyHash.put(request, costDiff);&#10;&#9;&#9;&#9;}&#10;&#9;&#9;&#9;if (costDiff &lt; cheapest.get(request) ){&#10;&#9;&#9;&#9;&#9;bestBuyHash.put(request, costDiff);&#10;&#9;&#9;&#9;}&#10;&#9;&#9;}&#9;&#10;&#9;}&#10;}&#10;&#10;for (Example x : inputData){&#10;&#9;request = x[&quot;request&quot;];&#10;&#9;if (x[&quot;overall_diff&quot;] &gt;= maxLoss &amp;&amp; x[&quot;cost_diff&quot;] == bestBuyHash.get(request)  )&#9;{&#10;&#9;&#9;x[&quot;best_buy&quot;] = true;&#10;&#9;}&#10;&#9;if (x[&quot;cost_diff&quot;] == cheapest.get(request) ){&#10;&#9;&#9;x[&quot;cheapest&quot;] = true;&#10;&#9;}&#10;}&#10;&#10;&#10;// Sum the findings&#10;int saved = 0;&#10;int maxSaved = 0;&#10;int aef = 0;&#10;int fea = 0;&#10;Collection&lt;Example&gt; bestBuyValues = bestBuyHash.values();&#10;Collection&lt;Example&gt; cheapestValues = cheapest.values();&#10;&#10;for (Integer ex : bestBuyValues){&#10;&#9;saved += ex.intValue();&#10;&#9;aef++;&#10;}&#10;&#10;for (Integer player : cheapestValues){&#10;&#9;maxSaved += player.intValue();&#10;&#9;fea++;&#10;}&#10;&#10;// This line returns the first input as the first output&#10;return [inputData, saved, maxSaved, aef, fea]"/>
+        <parameter key="standard_imports" value="true"/>
+      </operator>
+      <connect from_port="input 1" to_op="Set Macros" to_port="through 1"/>
+      <connect from_op="Set Macros" from_port="through 1" to_op="Select Distances Attributes" to_port="example set input"/>
+      <connect from_op="Select Distances Attributes" from_port="example set output" to_op="Select Distances Attributes (2)" to_port="example set input"/>
+      <connect from_op="Select Distances Attributes" from_port="original" to_op="Join Attributes" to_port="right"/>
+      <connect from_op="Select Distances Attributes (2)" from_port="example set output" to_op="Select Distances Attributes (3)" to_port="example set input"/>
+      <connect from_op="Select Distances Attributes (2)" from_port="original" to_op="Join Attributes (2)" to_port="right"/>
+      <connect from_op="Select Distances Attributes (3)" from_port="example set output" to_op="Normalize" to_port="example set input"/>
+      <connect from_op="Normalize" from_port="example set output" to_op="SVD" to_port="example set input"/>
+      <connect from_op="SVD" from_port="example set output" to_op="Join Attributes (2)" to_port="left"/>
+      <connect from_op="Join Attributes (2)" from_port="join" to_op="Select Team" to_port="example set input"/>
+      <connect from_op="Select Team" from_port="example set output" to_op="Select Distances Attributes (4)" to_port="example set input"/>
+      <connect from_op="Select Team" from_port="original" to_op="Select Distances Attributes (5)" to_port="example set input"/>
+      <connect from_op="Select Distances Attributes (4)" from_port="example set output" to_op="Cross Distances" to_port="request set"/>
+      <connect from_op="Select Distances Attributes (5)" from_port="example set output" to_op="Cross Distances" to_port="reference set"/>
+      <connect from_op="Cross Distances" from_port="result set" to_op="Rename ID" to_port="example set input"/>
+      <connect from_op="Rename ID" from_port="example set output" to_op="Set Role ID" to_port="example set input"/>
+      <connect from_op="Set Role ID" from_port="example set output" to_op="Join Attributes" to_port="left"/>
+      <connect from_op="Join Attributes" from_port="join" to_op="Generate Comparative Attributes" to_port="example set input"/>
+      <connect from_op="Generate Comparative Attributes" from_port="example set output" to_op="Calculate Comparatives" to_port="input 1"/>
+      <connect from_op="Calculate Comparatives" from_port="output 1" to_port="result 1"/>
+      <connect from_op="Calculate Comparatives" from_port="output 2" to_port="result 2"/>
+      <connect from_op="Calculate Comparatives" from_port="output 3" to_port="result 3"/>
+      <connect from_op="Calculate Comparatives" from_port="output 4" to_port="result 4"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="source_input 2" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+      <portSpacing port="sink_result 4" spacing="0"/>
+      <portSpacing port="sink_result 5" spacing="0"/>
+      <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="401" y="599">N&amp;#227;o &amp;#233; necess&amp;#225;rio separar goleiros. O c&amp;#225;lculo da dist&amp;#226;ncia j&amp;#225; os separa&lt;br/&gt;</description>
+    </process>
+  </operator>
+</process>
